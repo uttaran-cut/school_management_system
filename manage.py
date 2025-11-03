@@ -18,4 +18,16 @@ def main():
 
 
 if __name__ == '__main__':
+    if __name__ == "__main__":
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "schoolmanagement.settings")
+    from django.core.management import execute_from_command_line
+    execute_from_command_line(sys.argv)
+
+    # ---- TEMPORARY CODE TO CREATE ADMIN ----
+    from django.contrib.auth import get_user_model
+    User = get_user_model()
+    if not User.objects.filter(username="admin").exists():
+        User.objects.create_superuser("admin", "admin@example.com", "admin123")
+    # ---- END TEMP CODE ----
+
     main()
